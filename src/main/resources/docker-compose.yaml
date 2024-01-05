@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    networks:
+      - frontend
+    volumes:
+      - ./app:/app
+    environment:
+      - NGINX_PORT=80
+
+  api:
+    image: myapi:latest
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - ./api:/api
+    environment:
+      - API_PORT=3000
+
+networks:
+  frontend:
+    driver: bridge
+
+  backend:
+    driver: bridge
