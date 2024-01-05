@@ -1,25 +1,40 @@
 package org.example.models.terraform
 
+import lombok.*
+
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
+@Builder
 data class Terraform(
-    val provider: Provider,
-    val resource: Resource
+    val providers: List<Provider>,
+    val resources: List<Resource>
 )
 
 sealed class Provider {
-    abstract val id: String
 }
 
 sealed class Resource{
     abstract val id: String
 };
 
+data class DockerProvider (
+    val version: String
+): Provider();
+
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
+@Builder
 data class DockerContainerResource(
     override val id: String,
     val image: String,
-    val networks: List<String>,
-    val volumes: List<String>,
-    val environment: List<String>,
-): Provider()
+    val networks: List<String>?,
+    val volumes: List<String>?,
+    val environment: List<String>?,
+): Resource()
 
 enum class NetworkDriverEnum(val value: String) {
     BRIDGE("bridge"),
@@ -30,6 +45,11 @@ enum class NetworkDriverEnum(val value: String) {
     NONE("none")
 }
 
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
+@Builder
 data class DockerNetworkResource(
     override val id: String,
     val name: String,
