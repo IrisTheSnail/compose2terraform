@@ -5,5 +5,5 @@ Transforms your docker-compose file to a terraform config file
 ### Docker-compose
 ### Terraform
 
-## ETL
+## etl
 

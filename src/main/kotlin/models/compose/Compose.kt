@@ -1,20 +1,45 @@
 package org.example.models.compose
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonValue
+import lombok.AllArgsConstructor
+import lombok.Data
+import lombok.Getter
+import lombok.Setter
+
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
 data class Compose(
+    @JsonProperty("version")
     val version: String,
-    val services: Service,
-    val network: Network
+    @JsonProperty("services")
+    val services: Map<String, Service>,
+    @JsonProperty("networks")
+    val networks: Map<String, Network>? = null
 )
 
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
 data class Service(
-    val name: String,
+    @JsonProperty("image")
     val image: String,
-    val networks: List<String>,
-    val volumes: List<String>,
-    val environment: List<String>
+    @JsonProperty("networks")
+    val networks: List<String>? = null,
+    @JsonProperty("volumes")
+    val volumes: List<String>? = null,
+    @JsonProperty("environment")
+    val environment: List<String>? = null
 )
 
-enum class NetworkDriverEnum(val value: String) {
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
+enum class NetworkDriverEnum(@JsonValue val value: String) {
     BRIDGE("bridge"),
     HOST("host"),
     OVERLAY("overlay"),
@@ -23,7 +48,11 @@ enum class NetworkDriverEnum(val value: String) {
     NONE("none")
 }
 
+@AllArgsConstructor
+@Getter
+@Setter
+@Data
 data class Network(
-    val name: String,
-    val driver: NetworkDriverEnum
+    @JsonProperty("driver")
+    val driver: NetworkDriverEnum? = NetworkDriverEnum.BRIDGE
 )
