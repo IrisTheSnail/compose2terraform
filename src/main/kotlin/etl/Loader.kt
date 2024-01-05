@@ -5,6 +5,15 @@ import java.io.OutputStream
 
 object Loader {
     fun load(terraform: Terraform, outputStream: OutputStream){
-        TODO("Not implemented yet")
+        val writer = outputStream.bufferedWriter()
+        terraform.providers.forEach {
+            writer.write(it.serialize());
+            writer.newLine()
+        }
+        terraform.resources.forEach {
+            writer.write(it.serialize());
+            writer.newLine()
+        }
+        writer.flush()
     }
 }

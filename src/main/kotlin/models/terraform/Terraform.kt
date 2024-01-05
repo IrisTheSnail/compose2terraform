@@ -12,16 +12,28 @@ data class Terraform(
     val resources: List<Resource>
 )
 
-sealed class Provider {
+interface Serializable {
+    fun serialize(): String;
 }
 
-sealed class Resource{
+sealed class Provider: Serializable {
+}
+
+sealed class Resource: Serializable{
     abstract val id: String
-};
+}
 
 data class DockerProvider (
     val version: String
-): Provider();
+): Provider() {
+    override fun serialize(): String {
+        return """
+            provider "docker" {
+                version = "$version"
+            }
+        """.trimIndent()
+    }
+}
 
 @AllArgsConstructor
 @Getter
@@ -34,7 +46,34 @@ data class DockerContainerResource(
     val networks: List<String>?,
     val volumes: List<String>?,
     val environment: List<String>?,
-): Resource()
+): Resource()  {
+    override fun serialize(): String {
+        val nets = networks?.joinToString(", ") { "\"$it\"" } ?: ""
+        val vols = volumes?.joinToString(", ") { "\"$it\"" } ?: ""
+        val envs = environment?.joinToString(", ") { "\"$it\"" } ?: ""
+
+        return """
+            resource "docker_container" "$id" {
+                image      = "$image"
+                ${
+                    if(networks != null) {
+                        "networks    = [$nets]"
+                    } else ""
+                }
+                ${
+                    if(volumes != null) {
+                        "volumes     = [$vols]"
+                    } else ""
+                }
+                ${
+                    if(volumes != null) {
+                        "environment = [$envs]"
+                    } else ""
+                }
+            }
+        """.trimIndent()
+    }
+}
 
 enum class NetworkDriverEnum(val value: String) {
     BRIDGE("bridge"),
@@ -54,4 +93,13 @@ data class DockerNetworkResource(
     override val id: String,
     val name: String,
     val driver: org.example.models.compose.NetworkDriverEnum
-): Resource()
+): Resource() {
+    override fun serialize(): String {
+        return """
+            resource "docker_network" "$id" {
+                name   = "$name"
+                driver = "${driver.value}"
+            }
+        """.trimIndent()
+    }
+}

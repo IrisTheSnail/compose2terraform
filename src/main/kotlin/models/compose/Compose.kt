@@ -18,7 +18,11 @@ data class Compose(
     val services: Map<String, Service>,
     @JsonProperty("networks")
     val networks: Map<String, Network>? = null
-)
+) {
+    companion object {
+
+    }
+}
 
 @AllArgsConstructor
 @Getter
