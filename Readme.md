@@ -37,10 +37,10 @@ reliably. In this project we used ETL(Extract, transform, Load) for the transfor
 
 
 ### Source Metamodel: model for a Docker compose file
-![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/bf1270fe-5a02-483c-971c-716a6c08679d)
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/b10d9306-22e2-4d6b-b979-e88e844e6b5c)
 
 ### Target Metamodel: model for a Terraform config file
-![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/1b7020c2-c07c-4a7d-aea5-44d83ee778f9)
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/4f11c13c-f180-46f1-89d9-4251333ed403)
 
 ### Model Transformation : definition
 
