@@ -1,5 +1,6 @@
 # compose2terraform
 **Transforms your docker-compose file to a Terraform config file!**
+> A minimalistic but highly scalable docker-compose to Terraform config file transformer
 
 # Introduction
 Model Driven Engineering (MDE) is a software development approach
@@ -37,10 +38,10 @@ reliably. In this project we used ETL(Extract, transform, Load) for the transfor
 
 
 ### Source Metamodel: model for a Docker compose file
-![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/b10d9306-22e2-4d6b-b979-e88e844e6b5c)
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/4f6a9399-9759-44a7-acf9-d5f96a6c10f9)
 
 ### Target Metamodel: model for a Terraform config file
-![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/4f11c13c-f180-46f1-89d9-4251333ed403)
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/89d6df68-0efd-471f-b234-9e117781c56f)
 
 ### Model Transformation : definition
 
@@ -49,8 +50,14 @@ to to specify how to produce target models from a set of source models. This
 allows developers to define how the elements of the source model should be used
 to initialize the elements of the target model.
 
+### Transformation (Model-To-Model)
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/6c8d4c89-c73e-467f-badd-bea16bf31571)
+
+## Q&A
+### Why Kotlin?
+I chose Kotlin as I am learning it because it looks cleaner and less verbose than Java, moreover I liked how declarative it looks when writing the transform part of the ETL.
+
+
 # Conclusion
 
-
 In conclusion, compose2terraform automates the conversion of Docker Compose files to Terraform configurations using Model Driven Engineering and an ETL pipeline. This efficient transformation accelerates development and enhances deployment reliability.
-
