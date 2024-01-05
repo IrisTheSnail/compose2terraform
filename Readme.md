@@ -33,12 +33,26 @@ to Terraform config files, using a model transformation language can help speed
 up the development process and reduce the amount of time and effort needed
 to complete the task. This can help streamline the deployment process, allowing
 developers to deploy their applications to Kubernetes clusters faster and more
-reliably. In this project we used ETL(Extract, transform, Load) for this transformation :
+reliably. In this project we used ETL(Extract, transform, Load) for the transformation process :
+
+![ETL-Pipeline](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/43e0f970-893e-4d20-baad-4fc04ba4446e)
 
 
-## Meta-metamodels
-### Docker-compose
-### Terraform
+### Source Metamodel: model for a Docker compose file
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/bf1270fe-5a02-483c-971c-716a6c08679d)
 
-## etl
+### Target Metamodel: model for a Terraform config file
+![image](https://github.com/IrisTheSnail/compose2terraform/assets/91791764/1b7020c2-c07c-4a7d-aea5-44d83ee778f9)
+
+### Model Transformation : definition
+
+In the context of model-driven engineering, model transformation aims
+to to specify how to produce target models from a set of source models. This
+allows developers to define how the elements of the source model should be used
+to initialize the elements of the target model.
+
+# Conclusion
+
+
+In conclusion, compose2terraform automates the conversion of Docker Compose files to Terraform configurations using Model Driven Engineering and an ETL pipeline. This efficient transformation accelerates development and enhances deployment reliability.
 
